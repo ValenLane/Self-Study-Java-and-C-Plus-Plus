@@ -1,0 +1,52 @@
+//Constructors and Inheritance practice
+
+//Superclass
+class additionn {
+    private int i;
+    
+    //Constructor
+    additionn(int y) {
+        i = y;
+    }
+    
+    //Accessor method
+    int getI() { return i; }
+    void setI(int p) { i = p; }
+    
+    //Display method
+    void msg() {
+        System.out.println("Answer1: " + ( i + 10 ));
+    }
+}
+
+// Subclass of addition
+class subtractionn extends additionn {
+    private int y;
+    
+    //Subclass constructor
+    subtractionn(int b, int i) {
+        super(i);
+        y = b;
+    }
+    
+    //Accessor method
+    int getY() { return y;}
+    void setT(int p) { y = p; }
+    
+    //Display method
+    void msges() {
+        System.out.println("Answer2: " + (y + getI()));
+    }
+}
+
+class prog1 {
+    public static void main(String args[]) {
+                
+        additionn ob = new additionn(5);
+        subtractionn ob2 = new subtractionn( 7, 5 );
+        
+        ob.msg(); // Calling Superclass
+        ob2.msges(); // Calling Subclass
+                      
+    }
+}
