@@ -1,0 +1,41 @@
+class sortArray {
+    static void sArray(char letters[]) {
+        sortA(letters, 0, letters.length-1);
+    }
+    
+    private static void sortA(char letters[], int leftS, int rightS){
+        int i, j;
+        char x, y;
+        
+        i = leftS; j = rightS;
+        x = letters[(leftS+rightS)/2];
+        
+        do {
+            while((letters[i] < x) && (i < rightS)) i++;
+            while((x < letters[j]) && (j > leftS)) j--;
+            
+            if(i <= j) {
+                y = letters[i];
+                letters[i] = letters[j];
+                letters[j] = y;
+                i++; j--;
+            }
+        }while(i <= j);
+        if(i < rightS) sortA(letters, i, rightS);
+        if(leftS < j) sortA(letters, leftS, j);
+        
+    }
+}
+
+class pract2 {
+    public static void main(String args[]) {
+        char letters[] = {'d', 'c', 'a', 'e', 'b'};
+        int i;
+        
+        sortArray.sArray(letters);
+        
+        for( i = 0; i < letters.length; i++)
+            System.out.print(" " + letters[i]);
+            System.out.println();
+    }
+}
