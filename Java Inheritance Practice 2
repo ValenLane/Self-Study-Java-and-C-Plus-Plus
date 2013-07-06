@@ -1,0 +1,63 @@
+class vehicle {
+    private int year;
+    private String model;
+    private String make;
+    private String color;
+    private int price;
+    private double custMax;
+    
+    // Superclass constructor  
+    vehicle(int yr, String md, String mk, String cl, int pr, double cm) {
+        year = yr;
+        model = md;
+        make = mk;
+        color = cl;
+        price = pr;
+        custMax = cm;
+    }
+    
+    // Display vehicle information
+    void vehMsg() {
+        System.out.println("Year:" + year + 
+                           "\nModel:" + model + 
+                           "\nMake:" + make + 
+                           "\nColor:" + color + 
+                           "\nPrice:$" + price );
+    }
+}
+
+class finCheck extends vehicle {
+    int prCheck;
+    double customerSalary;
+    
+    //Subclass constructor
+    finCheck (int yr, String md, String mk, String cl, int pr, double cm) {
+        super( yr, md, mk, cl, pr, cm );
+        prCheck = pr;
+        customerSalary = cm;
+    }
+    
+    //Check if user can afford vehicle. Must make twice the cost of the vehicle to easily keep up with payments.
+    void affordVeh() {
+        if(prCheck <= (customerSalary / 2)) {
+            System.out.println("\nYou can afford this car at $" + 
+                              ((prCheck / 12) / 4) + 
+                               " a month for over 4years.");
+        }
+        else 
+            System.out.println("\nYou can't afford this vehicle.");
+        
+    }
+}
+
+class pract2 {
+    public static void main(String args[]) {
+        finCheck ac = new finCheck(2001, "monte carlo", "chevy", "red", 25000, 50000);
+        
+        ac.vehMsg();
+        ac.affordVeh();
+    }
+}
+
+
+
