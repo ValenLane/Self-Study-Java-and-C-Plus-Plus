@@ -1,19 +1,20 @@
+import java.text.DecimalFormat;
+
 class vehicle {
     private int year;
     private String model;
     private String make;
     private String color;
-    private int price;
+    private double price;
     private double custMax;
     
     // Superclass constructor  
-    vehicle(int yr, String md, String mk, String cl, int pr, double cm) {
+    vehicle(int yr, String md, String mk, String cl, double pr) {
         year = yr;
         model = md;
         make = mk;
         color = cl;
         price = pr;
-        custMax = cm;
     }
     
     // Display vehicle information
@@ -27,21 +28,24 @@ class vehicle {
 }
 
 class finCheck extends vehicle {
-    int prCheck;
+    double prCheck;
     double customerSalary;
+    DecimalFormat twoDec = new DecimalFormat("#0.00");  
+    
     
     //Subclass constructor
-    finCheck (int yr, String md, String mk, String cl, int pr, double cm) {
-        super( yr, md, mk, cl, pr, cm );
+    finCheck (int yr, String md, String mk, String cl, double pr, double cm) {
+        super( yr, md, mk, cl, pr );
         prCheck = pr;
         customerSalary = cm;
     }
     
     //Check if user can afford vehicle. Must make twice the cost of the vehicle to easily keep up with payments.
     void affordVeh() {
+        
         if(prCheck <= (customerSalary / 2)) {
             System.out.println("\nYou can afford this car at $" + 
-                              ((prCheck / 12) / 4) + 
+                              twoDec.format((prCheck / 12) / 4) + 
                                " a month for over 4years.");
         }
         else 
@@ -52,7 +56,7 @@ class finCheck extends vehicle {
 
 class pract2 {
     public static void main(String args[]) {
-        finCheck ac = new finCheck(2001, "monte carlo", "chevy", "red", 25000, 50000);
+        finCheck ac = new finCheck(2001, "monte carlo", "chevy", "red", 24999.99, 51200.95);
         
         ac.vehMsg();
         ac.affordVeh();
